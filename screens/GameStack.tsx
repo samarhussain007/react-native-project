@@ -10,8 +10,14 @@ import {
   TouchableOpacity,
   Platform,
   Pressable,
+  SafeAreaView,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import {HeaderContainer} from './SharedTransition';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {quoteRandomizer} from '../utils/quoteRandomizer';
+import ConfettiCannon from 'react-native-confetti-cannon';
+import GradientText from '../components/GradientMask';
 
 const {width} = Dimensions.get('window');
 const gapRow = 38;
@@ -31,6 +37,7 @@ const styles = StyleSheet.create({
     rowGap: gapRow,
     padding: padding,
     columnGap: gapColumn,
+    marginBottom: 24,
   },
 });
 const items = [
@@ -402,7 +409,6 @@ const items = [
 const TournamentCard = () => (
   <View
     style={{
-      marginTop: 20,
       width: bannerWidth,
       height: 116,
       backgroundColor: '#0c0c0c',
@@ -413,8 +419,7 @@ const TournamentCard = () => (
       shadowOpacity: 0.25,
       shadowRadius: 4,
       position: 'relative',
-      marginBottom: 50,
-
+      marginBottom: 16,
       // overflow: 'hidden',
     }}>
     <View
@@ -654,317 +659,159 @@ const TournamentCard = () => (
 );
 const GameStack = props => {
   const {navigation} = props;
+  const {top, bottom} = useSafeAreaInsets();
+  const {quote, author} = quoteRandomizer();
   return (
-    <ScrollView
+    <View
       style={{
         flex: 1,
         backgroundColor: '#090909',
+        paddingTop: top,
+        // paddingBottom: bottom,
       }}>
-      <View
-        style={{
-          alignItems: 'center',
-        }}>
-        <View style={styles.GameIconsContainer}>
-          {items.map(el => {
-            return (
-              <Pressable
-                onPress={() =>
-                  navigation.navigate('How to screen', {
-                    id: el.name,
-                    htScreen: el.htData,
-                  })
-                }
-                style={{
-                  height: childHeight,
-                  width: childWidth,
-                }}>
-                {/* <Text>{el.title}</Text> */}
-                <View
-                  style={{
-                    height: '100%',
-                    width: '100%',
-                    borderRadius: 16,
-                    overflow: 'hidden',
-                  }}>
-                  <Image
-                    source={el.image}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                    }}
-                    resizeMode="cover"
-                  />
-                </View>
-                <Text
-                  style={{
-                    padding: 4,
-                    fontFamily: 'Poppins-Regular',
-                    color: '#a8a8a8',
-                    fontSize: 12,
-                  }}>
-                  {el.name}
-                </Text>
-              </Pressable>
-            );
-          })}
-        </View>
-        <Image
-          source={require('../assets/WheelOff.gif')}
-          resizeMode="contain"
-          style={{
-            width: bannerWidth,
-            height: 192,
-            margin: 10,
-          }}
-        />
+      <HeaderContainer />
+      <ScrollView bounces={false}>
         <View
           style={{
-            // marginTop: 20,
-            width: bannerWidth,
-            height: 116,
-            backgroundColor: '#0c0c0c',
-            borderRadius: 18,
-            shadowColor: 'rgba(0, 0, 0, 0.76)',
-            shadowOffset: {width: 3, height: 3},
-            shadowOpacity: 0.76,
-            shadowRadius: 4,
-            elevation: 4,
-            position: 'relative',
-            borderWidth: 0.5,
-            borderColor: 'rgba(69, 57, 45, 0.40)',
+            alignItems: 'center',
           }}>
-          <View
-            style={{
-              padding: 8,
-              flexDirection: 'row',
-              gap: 14,
-            }}>
-            <View
-              style={{
-                width: 84,
-                height: 100,
-                elevation: 4,
-                shadowColor: '#000',
-                shadowOffset: {width: 0, height: 4},
-                shadowOpacity: 0.25,
-                shadowRadius: 4,
-              }}>
-              <Image
-                source={require('../assets/hoophero.png')}
-                style={{
-                  height: '100%',
-                  width: '100%',
-                }}
-              />
-            </View>
-            <View
-              style={{
-                width: bannerWidth - 84 - 8 - 14 - 8,
-                height: 116 - 20 - 8,
-              }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                }}>
-                <View
+          <View style={styles.GameIconsContainer}>
+            {items.map(el => {
+              return (
+                <Pressable
+                  onPress={() =>
+                    navigation.navigate('How to screen', {
+                      id: el.name,
+                      htScreen: el.htData,
+                    })
+                  }
                   style={{
-                    gap: 5,
+                    height: childHeight,
+                    width: childWidth,
                   }}>
-                  <Text
-                    style={{
-                      fontFamily: 'Poppins-Bold',
-                      fontSize: 16,
-                      letterSpacing: 0.48,
-                      color: '#FFF9F2',
-                    }}>
-                    WIN &#8377; 4000
-                  </Text>
+                  {/* <Text>{el.title}</Text> */}
                   <View
                     style={{
-                      width: bannerWidth - 84 - 8 - 14 - 8 - 86,
-                      ...Platform.select({
-                        android: {
-                          gap: 8,
-                        },
-                        ios: {
-                          gap: 14,
-                        },
-                      }),
-                    }}>
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        gap: 14,
-                        width: '100%',
-                      }}>
-                      <View
-                        style={{
-                          flexDirection: 'row',
-                          gap: 5,
-                        }}>
-                        <Image source={require('../assets/TEAM.png')} />
-                        <Text
-                          style={{
-                            color: '#8C8E8F',
-                          }}>
-                          20/50
-                        </Text>
-                      </View>
-                      <View
-                        style={{
-                          flexDirection: 'row',
-                          gap: 5,
-                          alignItems: 'center',
-                        }}>
-                        {/* <Image source={require('../assets/uis_calender.png')} /> */}
-                        <Text
-                          style={{
-                            color: '#8C8E8F',
-                            fontFamily: 'Poppins-Regular',
-                          }}>
-                          Weekly
-                        </Text>
-                      </View>
-                    </View>
-                    <View>
-                      <Text
-                        style={{
-                          color: '#8C8E8F',
-                          fontFamily: 'Poppins-Regular',
-                          fontSize: 10,
-                        }}>
-                        Time left: 10m:19s
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-                <View
-                  style={{
-                    flex: 1,
-                    height: '100%',
-                    paddingBottom: 8,
-                    justifyContent: 'flex-end',
-                  }}>
-                  <TouchableOpacity
-                    style={{
-                      borderRadius: 20,
-                      height: 28,
-                      width: 86,
-                      alignSelf: 'flex-end',
-                      alignItems: 'center',
-                      justifyContent: 'center',
+                      height: '100%',
+                      width: '100%',
+                      borderRadius: 16,
                       overflow: 'hidden',
-                      elevation: 4,
-                      shadowColor: '#000',
-                      shadowOffset: {width: 0, height: 4},
-                      shadowOpacity: 0.25,
-                      shadowRadius: 4,
                     }}>
-                    <LinearGradient
-                      colors={['#F2A14F', '#FF8100', '#ff8100']}
-                      start={{x: 0, y: 0}}
-                      end={{x: 0, y: 1}}
+                    <Image
+                      source={require('../assets/paddlepower.png')}
                       style={{
                         width: '100%',
                         height: '100%',
-                        position: 'absolute',
                       }}
+                      resizeMode="cover"
                     />
-                    <Text
-                      style={{
-                        fontFamily: 'Poppins-Regular',
-                        fontSize: 12,
-                        color: 'white',
-                      }}>
-                      &#8377; 150
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            </View>
+                  </View>
+                  <Text
+                    style={{
+                      padding: 4,
+                      fontFamily: 'Poppins-Regular',
+                      color: '#a8a8a8',
+                      fontSize: 12,
+                    }}>
+                    {el.name}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </View>
+          <Image
+            source={require('../assets/WheelOff.gif')}
+            resizeMode="contain"
+            style={{
+              width: bannerWidth,
+              height: 192,
+              marginBottom: 24,
+            }}
+          />
+          <View
+            style={{
+              marginBottom: 33,
+            }}>
+            <TournamentCard />
+            <TournamentCard />
           </View>
           <View
             style={{
-              position: 'absolute',
-              width: '100%',
-              height: 20,
-              bottom: 0,
-              backgroundColor: '#45392D',
-              alignItems: 'center',
-              justifyContent: 'center',
-              zIndex: -1,
-              borderBottomLeftRadius: 18,
-              borderBottomRightRadius: 18,
-              overflow: 'hidden',
+              width: '70%',
             }}>
             <View
               style={{
-                flexDirection: 'row',
-                gap: 4,
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginLeft: '20%',
+                marginBottom: 24,
               }}>
-              <View
+              {/* QuoteContainer */}
+              <Image
+                source={require('../assets/apos.png')}
                 style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 4,
-                }}>
-                <Image
-                  source={require('../assets/tripplehearts.png')}
-                  style={{
-                    height: 10,
-                  }}
-                />
-                <Text
-                  style={{
-                    fontFamily: 'Poppins-Bold',
-                    fontSize: 8,
-                    letterSpacing: 0.48,
-                    color: '#FFF9F2',
-                  }}>
-                  TRIPLE CHANCE
-                </Text>
-              </View>
+                  width: 13,
+                  height: 13,
+                  marginBottom: 10,
+                }}
+                resizeMode="contain"
+              />
               <Text
                 style={{
-                  color: '#fff',
+                  fontFamily: 'Poppins-medium',
+                  fontSize: 12,
+                  color: '#FFFFFF78',
+                  textAlign: 'center',
+                  marginBottom: 5,
                 }}>
-                |
+                {quote}
               </Text>
-              <View
+              <Text
                 style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 4,
+                  fontSize: 10,
+                  fontFamily: 'Poppins-bold',
+                  color: '#FFFFFF78',
+                  textAlign: 'center',
                 }}>
-                <Image
-                  source={require('../assets/Default.png')}
-                  style={{
-                    width: 10,
-                    height: 10,
-                  }}
-                />
-                <Text
-                  style={{
-                    fontFamily: 'Poppins-Bold',
-                    fontSize: 8,
-                    letterSpacing: 0.48,
-                    color: '#FFF9F2',
-                  }}>
-                  67% WINNERS
-                </Text>
-              </View>
+                - {author}
+              </Text>
+            </View>
+            <View
+              style={{
+                alignItems: 'center',
+                marginBottom: 20,
+              }}>
+              {/* Play Different */}
+              <GradientText
+                colors={['#ff8100', '#252525']}
+                style={{
+                  fontFamily: 'Humane-Bold',
+                  fontSize: 84,
+                }}>
+                PLAY DIFFERENT
+              </GradientText>
             </View>
           </View>
+          {/* <ConfettiCannon
+            count={200}
+            origin={{x: 0, y: 0}}
+            colors={[
+              '#ff8100',
+              '#ff8100',
+              '#ff8100',
+              '#ff8100',
+              '#ff8100',
+              '#ff8100',
+              '#ff8100',
+              '#ff8100',
+              '#ff8100',
+              '#ff8100',
+              '#ff8100',
+            ]}
+            autoStart={true}
+          /> */}
         </View>
-        <TournamentCard />
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 

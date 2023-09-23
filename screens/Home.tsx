@@ -24,7 +24,7 @@ const Home = ({navigation}: any) => {
           navigation.navigate('ScreenVideo');
         }}
       /> */}
-      {/* <Button
+      <Button
         title="Games Faq"
         onPress={() => {
           navigation.navigate('Faq');
@@ -46,7 +46,7 @@ const Home = ({navigation}: any) => {
       <Button
         title="How to screen"
         onPress={() => navigation.navigate('How to screen')}
-      /> */}
+      />
       {/* <Button
         title="shared transition"
         onPress={() => navigation.navigate('shared transition')}

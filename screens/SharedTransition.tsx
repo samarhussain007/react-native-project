@@ -47,15 +47,15 @@ const springOptions = {
   damping: 19,
 };
 
-const transition = SharedTransition.custom(values => {
-  'worklet';
-  return {
-    width: withSpring(values.targetWidth, springOptions),
-    height: withSpring(values.targetHeight, springOptions),
-    originX: withSpring(values.targetOriginX, springOptions),
-    originY: withSpring(values.targetOriginY, springOptions),
-  };
-});
+// const transition = SharedTransition.custom(values => {
+//   'worklet';
+//   return {
+//     width: withSpring(values.targetWidth, springOptions),
+//     height: withSpring(values.targetHeight, springOptions),
+//     originX: withSpring(values.targetOriginX, springOptions),
+//     originY: withSpring(values.targetOriginY, springOptions),
+//   };
+// });
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
@@ -186,14 +186,8 @@ const profilesStyles = StyleSheet.create({
   },
 });
 
-function HomeScreen({
-  navigation,
-}: NativeStackScreenProps<StackParamList, 'Home'>) {
-  const insets = useSafeAreaInsets();
-  const statusBarHeight = insets.top;
+export function HeaderContainer() {
   const [isInitialLoad, setInitialLoad] = useState(false);
-
-  const [isLoading, setLoading] = useState(true);
 
   const positionX = useSharedValue(-156);
   const handlePress = () => {
@@ -204,6 +198,51 @@ function HomeScreen({
   useEffect(() => {
     setTimeout(handlePress, 500);
   }, [isInitialLoad]);
+
+  return (
+    <View style={{justifyContent: 'center'}}>
+      <View style={homeStyles.headerContainer}>
+        <Pressable style={homeStyles.pressable}>
+          <View
+            style={{
+              backgroundColor: '#090909',
+              zIndex: 9999,
+              paddingLeft: 16,
+            }}>
+            <Animated.Image
+              source={profiles['dog' as Tag].image}
+              style={homeStyles.profile}
+              resizeMode="contain"
+            />
+          </View>
+          <Animated.Image
+            source={require('../assets/gdtext.png')}
+            style={[homeStyles.gdLogo]}
+            resizeMode="contain"
+          />
+        </Pressable>
+        <Pressable>
+          <Image
+            source={require('../assets/profileimage.png')}
+            style={{
+              width: 34,
+              height: 34,
+            }}
+          />
+        </Pressable>
+      </View>
+      <BottomDivider />
+    </View>
+  );
+}
+
+export function HomeScreen({
+  navigation,
+}: NativeStackScreenProps<StackParamList, 'Home'>) {
+  const insets = useSafeAreaInsets();
+  const statusBarHeight = insets.top;
+
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 5000);
@@ -222,53 +261,8 @@ function HomeScreen({
         },
       ]}>
       <StatusBar barStyle={'light-content'} />
+      <HeaderContainer />
 
-      <View style={{justifyContent: 'center'}}>
-        <View style={homeStyles.headerContainer}>
-          <Pressable style={homeStyles.pressable}>
-            <View
-              style={{
-                backgroundColor: '#090909',
-                zIndex: 9999,
-                paddingLeft: 16,
-              }}>
-              <Animated.Image
-                sharedTransitionTag={'dog'}
-                sharedTransitionStyle={transition}
-                source={profiles['dog' as Tag].image}
-                style={homeStyles.profile}
-                resizeMode="contain"
-              />
-            </View>
-            <Animated.Image
-              source={require('../assets/gdtext.png')}
-              style={[
-                homeStyles.gdLogo,
-                {
-                  transform: [
-                    {
-                      translateX: positionX,
-                    },
-                  ],
-                },
-              ]}
-              resizeMode="contain"
-            />
-          </Pressable>
-          <Pressable onPress={() => navigation.navigate('ProfileSettings')}>
-            <Animated.Image
-              sharedTransitionTag={'cat'}
-              sharedTransitionStyle={transition}
-              source={require('../assets/profileimage.png')}
-              style={{
-                width: 34,
-                height: 34,
-              }}
-            />
-          </Pressable>
-        </View>
-        <BottomDivider />
-      </View>
       {!isLoading ? <GameStack navigation={navigation} /> : <SkeletonLoader />}
     </View>
   );
@@ -282,11 +276,11 @@ const homeStyles = StyleSheet.create({
   gdLogo: {
     width: 156,
     height: 18,
-    transform: [
-      {
-        translateX: -156,
-      },
-    ],
+    // transform: [
+    //   {
+    //     translateX: -156,
+    //   },
+    // ],
   },
 
   headerContainer: {

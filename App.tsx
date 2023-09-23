@@ -33,7 +33,10 @@ function App(): JSX.Element {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
         <Stack.Screen
           name="Home"
           component={Home}
@@ -54,7 +57,13 @@ function App(): JSX.Element {
         />
         <Stack.Screen name="ScreenVideo" component={ScreenVideo} />
         <Stack.Screen name="Faq" component={Faq} />
-        <Stack.Screen name="GameStack" component={GameStack} />
+        <Stack.Screen
+          name="GameStack"
+          component={GameStack}
+          options={{
+            headerShown: false,
+          }}
+        />
         <Stack.Screen name="Audio" component={Audio} />
         {/* <Stack.Screen
           name="shared transition"

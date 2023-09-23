@@ -12,8 +12,6 @@ import {
 
 import HeaderWithBack from '../Header/HeaderWithBack';
 
-
-
 interface ModalType {
   modalContent: {
     image: any;
@@ -22,7 +20,7 @@ interface ModalType {
   };
 }
 
-console.log(process.env.API_URL);
+// console.log(process.env.API_URL);
 
 // const item = {};
 
@@ -118,12 +116,12 @@ const ImageScreenContaier = ({image, width, modalContent}) => {
 };
 
 const HowtoScreen = props => {
-  console.log(props);
+  // console.log(props);
   const {navigation, route} = props;
   const {id, htScreen} = route.params;
   const {width} = useWindowDimensions();
   // const {id, htScreen} = route;
-  console.log(htScreen);
+  // console.log(htScreen);
 
   return (
     <SafeAreaView

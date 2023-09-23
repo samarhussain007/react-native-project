@@ -8,15 +8,15 @@ const springOptions = {
   damping: 19,
 };
 
-const transition = SharedTransition.custom(values => {
-  'worklet';
-  return {
-    width: withSpring(values.targetWidth, springOptions),
-    height: withSpring(values.targetHeight, springOptions),
-    originX: withSpring(values.targetOriginX, springOptions),
-    originY: withSpring(values.targetOriginY, springOptions),
-  };
-});
+// const transition = SharedTransition.custom(values => {
+//   'worklet';
+//   return {
+//     width: withSpring(values.targetWidth, springOptions),
+//     height: withSpring(values.targetHeight, springOptions),
+//     originX: withSpring(values.targetOriginX, springOptions),
+//     originY: withSpring(values.targetOriginY, springOptions),
+//   };
+// });
 
 const ProfileSettings = ({navigation}) => {
   const insets = useSafeAreaInsets();
