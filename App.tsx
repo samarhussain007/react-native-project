@@ -28,6 +28,7 @@ import SliderScreen from './screens/SliderScreen';
 // import InputScreen from './screens/InputScreen';
 import InputScreen from './screens/InputScreen';
 import SplashScreenNew from './screens/SplashScreenNew';
+import Pacman from './screens/PacmanPaginator';
 
 function App(): JSX.Element {
   const Stack = createNativeStackNavigator();
@@ -153,6 +154,13 @@ function App(): JSX.Element {
         <Stack.Screen
           name="HomeScreen"
           component={SplashScreenNew}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Pacman"
+          component={Pacman}
           options={{
             headerShown: false,
           }}

@@ -36,7 +36,7 @@ const Home = ({navigation}: any) => {
           navigation.navigate('GameStack');
         }}
       />
-      <Button
+      {/* <Button
         title="Rewards"
         onPress={() => {
           navigation.navigate('Rewards');
@@ -46,12 +46,12 @@ const Home = ({navigation}: any) => {
       <Button
         title="How to screen"
         onPress={() => navigation.navigate('How to screen')}
-      />
+      /> */}
       {/* <Button
         title="shared transition"
         onPress={() => navigation.navigate('shared transition')}
       /> */}
-      <Button
+      {/* <Button
         title="Coin Animation"
         onPress={() => navigation.navigate('Coin Animation')}
       />
@@ -74,12 +74,13 @@ const Home = ({navigation}: any) => {
       <Button
         title="HomeScreen"
         onPress={() => navigation.navigate('HomeScreen')}
-      />
+      /> */}
       {/* <Button
         title="SkeletonLoader"
         onPress={() => navigation.navigate('SkeletonLoader')}
       /> */}
       {/* <Button title="FCM" onPress={() => navigation.navigate('FCM')} /> */}
+      <Button title="pacman" onPress={() => navigation.navigate('Pacman')} />
     </View>
   );
 };
