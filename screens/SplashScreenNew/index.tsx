@@ -7,6 +7,7 @@ import {
   Dimensions,
   Animated,
   Pressable,
+  useWindowDimensions,
 } from 'react-native';
 import React from 'react';
 import {styles} from './styles';
@@ -19,6 +20,7 @@ const ITEM_SIZE = Platform.OS === 'ios' ? width * 0.7 : width * 0.74;
 const EMPTY_ITEM_SIZE = (width - ITEM_SIZE) / 3;
 
 const HomeScreen = () => {
+  const {top, bottom} = useWindowDimensions();
   const [screen1, screen2, screen3] = [
     require('../../assets/screen1.png'),
     require('../../assets/screen2.png'),
@@ -35,7 +37,7 @@ const HomeScreen = () => {
   const scrollX = React.useRef(new Animated.Value(0)).current;
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {top: top, bottom: bottom}]}>
       <FlatList
         data={screens}
         renderItem={({item, index}) => {
@@ -99,9 +101,9 @@ const HomeScreen = () => {
           position: 'absolute',
           bottom: 0,
           width: '100%',
-          height: height * 0.35,
+          height: height * 0.4,
           alignItems: 'center',
-          paddingBottom: 20,
+          paddingBottom: 28,
           justifyContent: 'flex-end',
         }}>
         <LinearGradient
