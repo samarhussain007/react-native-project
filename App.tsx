@@ -27,6 +27,7 @@ import GamePlayers from './screens/GamePlayers';
 import SliderScreen from './screens/SliderScreen';
 // import InputScreen from './screens/InputScreen';
 import InputScreen from './screens/InputScreen';
+import SplashScreenNew from './screens/SplashScreenNew';
 
 function App(): JSX.Element {
   const Stack = createNativeStackNavigator();
@@ -145,6 +146,13 @@ function App(): JSX.Element {
         <Stack.Screen
           name="InputScreen"
           component={InputScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="HomeScreen"
+          component={SplashScreenNew}
           options={{
             headerShown: false,
           }}
