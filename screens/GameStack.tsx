@@ -740,39 +740,47 @@ const GameStack = props => {
             })}
           </View>
 
-          <FlatList
-            data={bannerData}
-            keyExtractor={item => item.key}
-            horizontal
-            bounces={false}
-            renderItem={({item}) => {
-              if (!item.img) {
+          <View
+            style={{
+              flex: 1,
+              marginBottom: 16,
+            }}>
+            <FlatList
+              data={bannerData}
+              keyExtractor={item => item.key}
+              horizontal
+              contentContainerStyle={{
+                marginBottom: 16,
+              }}
+              bounces={false}
+              renderItem={({item}) => {
+                if (!item.img) {
+                  return (
+                    <View
+                      style={{
+                        width: (width - bannerWidth) / 2,
+                        height: '100%',
+                      }}></View>
+                  );
+                }
                 return (
-                  <View
+                  <Image
+                    source={item.img}
+                    resizeMode="contain"
                     style={{
-                      width: (width - bannerWidth) / 2,
-                      height: '100%',
-                    }}></View>
+                      width: bannerWidth,
+                      height: 192,
+                    }}
+                  />
                 );
-              }
-              return (
-                <Image
-                  source={item.img}
-                  resizeMode="contain"
-                  style={{
-                    width: bannerWidth,
-                    height: 192,
-                    marginBottom: 24,
-                  }}
-                />
-              );
-            }}
-            onViewableItemsChanged={viewableItemsChanged}
-          />
-          <Pacman
-            currentIndex={currentIndexPaginator}
-            noofSlides={bannerData.length - 1}
-          />
+              }}
+              onViewableItemsChanged={viewableItemsChanged}
+            />
+            <Pacman
+              currentIndex={currentIndexPaginator}
+              noofSlides={bannerData.length - 1}
+            />
+          </View>
 
           <View
             style={{
