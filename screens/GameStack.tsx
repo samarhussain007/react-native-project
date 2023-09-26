@@ -11,6 +11,7 @@ import {
   Platform,
   Pressable,
   SafeAreaView,
+  FlatList,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {HeaderContainer} from './SharedTransition';
@@ -18,6 +19,8 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {quoteRandomizer} from '../utils/quoteRandomizer';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import GradientText from '../components/GradientMask';
+import Pacman from './PacmanPaginator';
+import React, {useState, useRef} from 'react';
 
 const {width} = Dimensions.get('window');
 const gapRow = 38;
@@ -406,6 +409,17 @@ const items = [
     ],
   },
 ];
+
+const bannerData = [
+  {key: '0'},
+  {key: '1', img: require('../assets/WheelOff.gif')},
+  {key: '2', img: require('../assets/WheelOff.gif')},
+  {key: '3', img: require('../assets/WheelOff.gif')},
+  {key: '4', img: require('../assets/WheelOff.gif')},
+  {key: '5', img: require('../assets/WheelOff.gif')},
+  {key: '6', img: require('../assets/WheelOff.gif')},
+];
+
 const TournamentCard = () => (
   <View
     style={{
@@ -661,6 +675,12 @@ const GameStack = props => {
   const {navigation} = props;
   const {top, bottom} = useSafeAreaInsets();
   const {quote, author} = quoteRandomizer();
+  const [currentIndexPaginator, setCurrentIndex] = useState<number>(0);
+  console.log(currentIndexPaginator);
+  const viewableItemsChanged = useRef(({viewableItems}) => {
+    setCurrentIndex(viewableItems[0].index);
+  }).current;
+
   return (
     <View
       style={{
@@ -719,15 +739,41 @@ const GameStack = props => {
               );
             })}
           </View>
-          <Image
-            source={require('../assets/WheelOff.gif')}
-            resizeMode="contain"
-            style={{
-              width: bannerWidth,
-              height: 192,
-              marginBottom: 24,
+
+          <FlatList
+            data={bannerData}
+            keyExtractor={item => item.key}
+            horizontal
+            bounces={false}
+            renderItem={({item}) => {
+              if (!item.img) {
+                return (
+                  <View
+                    style={{
+                      width: (width - bannerWidth) / 2,
+                      height: '100%',
+                    }}></View>
+                );
+              }
+              return (
+                <Image
+                  source={item.img}
+                  resizeMode="contain"
+                  style={{
+                    width: bannerWidth,
+                    height: 192,
+                    marginBottom: 24,
+                  }}
+                />
+              );
             }}
+            onViewableItemsChanged={viewableItemsChanged}
           />
+          <Pacman
+            currentIndex={currentIndexPaginator}
+            noofSlides={bannerData.length - 1}
+          />
+
           <View
             style={{
               marginBottom: 33,

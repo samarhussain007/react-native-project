@@ -5,19 +5,25 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import {Image} from '@rneui/base';
-import {ImageStore} from 'react-native';
 
-const Pacman = () => {
-  const emptyArray = new Array(7).fill(0);
+const Pacman = ({
+  currentIndex,
+  noofSlides,
+}: {
+  currentIndex: number;
+  noofSlides: number;
+}) => {
+  const emptyArray = new Array(noofSlides).fill(0);
   const containerPadding = 10; // You can adjust the container's padding as needed
   const elementWidth = 7; // Width of individual elements
-  const elementMargin = 10; // element margin
-  const index = useSharedValue(0);
+  const elementMargin = 9; // element margin
+  const index = useSharedValue(currentIndex);
   const [goingBack, setGoingBack] = React.useState(false);
   const [imageSource, setImageSource] = React.useState(
-    require('../../assets/pacClose.png'),
+    require('../../assets/pacOpen.png'),
   );
+  console.log('ValueIndex', index.value);
+  console.log('currentIndex', currentIndex);
 
   const handleMouthOpen = () => {
     // Change the image source to the replacement image
@@ -27,15 +33,15 @@ const Pacman = () => {
     setTimeout(() => {
       setImageSource(require('../../assets/pacClose.png'));
     }, 100); // Adjust the delay (in milliseconds) as needed
+    setTimeout(() => {
+      setImageSource(require('../../assets/pacOpen.png'));
+    }, 250); // Adjust the delay (in milliseconds) as needed
   };
 
   const animatedLeft = useAnimatedStyle(() => {
     return {
       left: withSpring(
         containerPadding + index.value * (elementWidth + elementMargin),
-        {
-          overshootClamping: true,
-        },
       ),
     };
   });
@@ -47,11 +53,11 @@ const Pacman = () => {
   });
 
   const movePac = () => {
-    if (index.value < emptyArray.length - 1) {
-      //   setIndex(index + 1);
-      index.value += 1;
+    console.log(emptyArray.length);
+    if (index.value < emptyArray.length) {
+      // index.value += 1;
+
       setGoingBack(false);
-      console.log('true');
     }
     if (index.value === emptyArray.length - 1) {
       setGoingBack(true);
@@ -64,25 +70,32 @@ const Pacman = () => {
       //   setIndex(index - 1);
       index.value -= 1;
       setGoingBack(true);
-      console.log('false');
     }
-    if (index.value === 0) {
+    if (index.value === 1) {
       setGoingBack(false);
     }
     handleMouthOpen();
   };
+  React.useEffect(() => {
+    if (index.value < currentIndex) {
+      index.value += 1;
+      movePac();
+    }
+    if (index.value > currentIndex) {
+      index.value -= 1;
+      movePacBack();
+    }
+    // movePacBack();
+  }, [currentIndex]);
   return (
     <View
       style={{
-        flex: 1,
-        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
       }}>
       <View
         style={{
           backgroundColor: '#1a1a1a',
-          //   width: 80,
           padding: 10,
           height: 24,
           borderRadius: 21,
@@ -96,7 +109,6 @@ const Pacman = () => {
               position: 'absolute',
               width: 16,
               height: 16,
-              //   backgroundColor: '#FFE395',
               borderRadius: 50,
               zIndex: 999,
             },
@@ -114,20 +126,46 @@ const Pacman = () => {
             resizeMode="contain"
           />
         </Animated.View>
-        {emptyArray.map(() => (
-          <View
-            style={{
-              width: elementWidth,
-              height: elementWidth,
-              backgroundColor: '#FFE395',
-              borderRadius: 50,
-              marginHorizontal: elementMargin / 2,
-            }}></View>
-        ))}
-      </View>
+        {emptyArray.map((_, idx) => {
+          const distanceFromSelected = Math.abs(index.value - idx);
 
-      <Button onPress={movePac} title="move" />
-      <Button onPress={movePacBack} title="moveBack" />
+          const getWidth = () => {
+            let pacWidth;
+
+            if (distanceFromSelected > 2) {
+              pacWidth = '60%';
+            } else if (distanceFromSelected > 1) {
+              pacWidth = '80%';
+            } else {
+              pacWidth = '100%';
+            }
+
+            return pacWidth;
+          };
+          return (
+            <View
+              key={idx}
+              style={{
+                width: elementWidth,
+                height: elementWidth,
+                overflow: 'hidden',
+                marginHorizontal: elementMargin / 2,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <View
+                style={{
+                  borderRadius: 50,
+                  width: getWidth(),
+                  height: getWidth(),
+                  backgroundColor:
+                    distanceFromSelected > 1 ? '#6D644A' : '#FFE395',
+                  opacity: index.value === idx ? 0 : 1,
+                }}></View>
+            </View>
+          );
+        })}
+      </View>
     </View>
   );
 };
