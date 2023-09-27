@@ -34,7 +34,6 @@ const padding = 17;
 const itemPerRow = 3;
 const bannerWidth = width * 0.9;
 const SPACING = 10;
-const scrollBannerWidth = Platform.OS === 'ios' ? width * 0.8 : width * 0.8;
 const totalGapSize = (itemPerRow - 1) * gapColumn;
 const totalpadding = (itemPerRow - 1) * padding;
 const windowWidth = width;
