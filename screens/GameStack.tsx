@@ -20,14 +20,21 @@ import {quoteRandomizer} from '../utils/quoteRandomizer';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import GradientText from '../components/GradientMask';
 import Pacman from './PacmanPaginator';
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useCallback, useMemo} from 'react';
+import {LogBox} from 'react-native';
+import Animated, {useSharedValue} from 'react-native-reanimated';
+
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 const {width} = Dimensions.get('window');
 const gapRow = 38;
 const gapColumn = 17;
 const padding = 17;
 const itemPerRow = 3;
-const bannerWidth = width - padding * 2;
+const bannerWidth = width * 0.9;
+const SPACING = 10;
+const scrollBannerWidth = Platform.OS === 'ios' ? width * 0.8 : width * 0.8;
 const totalGapSize = (itemPerRow - 1) * gapColumn;
 const totalpadding = (itemPerRow - 1) * padding;
 const windowWidth = width;
@@ -411,13 +418,14 @@ const items = [
 ];
 
 const bannerData = [
-  {key: '0'},
+  // {key: '0'},
   {key: '1', img: require('../assets/WheelOff.gif')},
   {key: '2', img: require('../assets/WheelOff.gif')},
   {key: '3', img: require('../assets/WheelOff.gif')},
   {key: '4', img: require('../assets/WheelOff.gif')},
   {key: '5', img: require('../assets/WheelOff.gif')},
   {key: '6', img: require('../assets/WheelOff.gif')},
+  // {key: '7'},
 ];
 
 const TournamentCard = () => (
@@ -673,13 +681,29 @@ const TournamentCard = () => (
 );
 const GameStack = props => {
   const {navigation} = props;
+  const [nonChangingState, setNonChangingState] = useState(0);
   const {top, bottom} = useSafeAreaInsets();
-  const {quote, author} = quoteRandomizer();
+  const {quote, author} = useMemo(() => quoteRandomizer(), [nonChangingState]);
   const [currentIndexPaginator, setCurrentIndex] = useState<number>(0);
-  console.log(currentIndexPaginator);
+  // console.log(currentIndexPaginator);
   const viewableItemsChanged = useRef(({viewableItems}) => {
-    setCurrentIndex(viewableItems[0].index);
+    console.log(viewableItems[0]);
+    if (viewableItems[0]) {
+      setCurrentIndex(viewableItems[0].index);
+    }
+    return;
   }).current;
+  const lastContentOffset = useSharedValue(0);
+  // const isScrolling = useSharedValue(false);
+  const [PacDirection, setPacDirection] = useState('right');
+  // const AnimatFlatList = Animated.createAnimatedComponent(FlatList);
+  console.log('rerendered');
+  const viewabilityConfig = {
+    // waitForInteraction: true,
+    // At least one of the viewAreaCoveragePercentThreshold or itemVisiblePercentThreshold is required.
+    // viewAreaCoveragePercentThreshold: 75,
+    itemVisiblePercentThreshold: 65,
+  };
 
   return (
     <View
@@ -749,36 +773,77 @@ const GameStack = props => {
               data={bannerData}
               keyExtractor={item => item.key}
               horizontal
+              showsHorizontalScrollIndicator={false}
+              ItemSeparatorComponent={() => (
+                <View style={{width: SPACING, height: '100%'}}></View>
+              )}
+              // ViewabilityConfig={}
+              viewabilityConfig={viewabilityConfig}
+              initialNumToRender={2}
+              removeClippedSubviews={true}
+              getItemLayout={(data, index) => ({
+                length: bannerWidth,
+                offset: bannerWidth * index,
+                index,
+              })}
+              snapToInterval={bannerWidth + SPACING}
+              decelerationRate={Platform.OS === 'ios' ? 0 : 0.98}
+              renderToHardwareTextureAndroid
+              snapToAlignment="start"
               contentContainerStyle={{
-                marginBottom: 16,
+                padding: 17,
+              }}
+              onScroll={({nativeEvent}) => {
+                if (nativeEvent.contentOffset.x > lastContentOffset.value) {
+                  setPacDirection('right');
+                }
+                lastContentOffset.value = nativeEvent.contentOffset.x;
+                if (nativeEvent.contentOffset.x < lastContentOffset.value) {
+                  setPacDirection('left');
+                }
               }}
               bounces={false}
+              // scrollEventThrottle={32}
               renderItem={({item}) => {
                 if (!item.img) {
                   return (
                     <View
                       style={{
-                        width: (width - bannerWidth) / 2,
+                        width: (width - bannerWidth - SPACING) / 2,
                         height: '100%',
                       }}></View>
                   );
                 }
                 return (
-                  <Image
-                    source={item.img}
-                    resizeMode="contain"
+                  <View
                     style={{
-                      width: bannerWidth,
+                      // marginHorizontal: 10,
+
+                      // padding: SPACING * 2,
+                      // height: '100%',
                       height: 192,
-                    }}
-                  />
+                      width: bannerWidth,
+
+                      // backgroundColor: 'blue',
+                      alignItems: 'center',
+                    }}>
+                    <Image
+                      source={item.img}
+                      resizeMode="contain"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                      }}
+                    />
+                  </View>
                 );
               }}
               onViewableItemsChanged={viewableItemsChanged}
             />
             <Pacman
               currentIndex={currentIndexPaginator}
-              noofSlides={bannerData.length - 1}
+              noofSlides={bannerData.length}
+              pacDirection={PacDirection}
             />
           </View>
 

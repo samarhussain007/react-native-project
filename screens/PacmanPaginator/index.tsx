@@ -1,19 +1,24 @@
-import {View, Text, Button} from 'react-native';
+import {View, Text, Button, Image} from 'react-native';
 import React from 'react';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
+import FastImage from 'react-native-fast-image';
 
 const Pacman = ({
   currentIndex,
   noofSlides,
+  pacDirection,
 }: {
   currentIndex: number;
   noofSlides: number;
+  pacDirection: string;
 }) => {
   const emptyArray = new Array(noofSlides).fill(0);
+  // console.log(emptyArray);
+
   const containerPadding = 10; // You can adjust the container's padding as needed
   const elementWidth = 7; // Width of individual elements
   const elementMargin = 9; // element margin
@@ -22,8 +27,6 @@ const Pacman = ({
   const [imageSource, setImageSource] = React.useState(
     require('../../assets/pacOpen.png'),
   );
-  console.log('ValueIndex', index.value);
-  console.log('currentIndex', currentIndex);
 
   const handleMouthOpen = () => {
     // Change the image source to the replacement image
@@ -52,40 +55,21 @@ const Pacman = ({
     };
   });
 
-  const movePac = () => {
-    console.log(emptyArray.length);
-    if (index.value < emptyArray.length) {
-      // index.value += 1;
-
-      setGoingBack(false);
-    }
-    if (index.value === emptyArray.length - 1) {
-      setGoingBack(true);
-    }
-    handleMouthOpen();
-  };
-
-  const movePacBack = () => {
-    if (index.value > 0) {
-      //   setIndex(index - 1);
-      index.value -= 1;
-      setGoingBack(true);
-    }
-    if (index.value === 1) {
-      setGoingBack(false);
-    }
-    handleMouthOpen();
-  };
   React.useEffect(() => {
-    if (index.value < currentIndex) {
-      index.value += 1;
-      movePac();
+    console.log('-------------');
+    console.log('initialValue', index.value);
+    console.log('initialCurrent', currentIndex);
+    console.log('-------------');
+    index.value = currentIndex;
+    if (pacDirection === 'left' || currentIndex === emptyArray.length - 1) {
+      setGoingBack(true);
+    } else {
+      setGoingBack(false);
     }
-    if (index.value > currentIndex) {
-      index.value -= 1;
-      movePacBack();
+    if (currentIndex === 0) {
+      setGoingBack(false);
     }
-    // movePacBack();
+    handleMouthOpen();
   }, [currentIndex]);
   return (
     <View
@@ -113,17 +97,22 @@ const Pacman = ({
               zIndex: 999,
             },
             animatedLeft,
+            rotateStyles,
           ]}>
-          <Animated.Image
+          {/* <FastImage
             source={imageSource}
             style={[
               {
                 width: '100%',
                 height: '100%',
               },
-              rotateStyles,
             ]}
             resizeMode="contain"
+          /> */}
+          <FastImage
+            style={{width: '100%', height: '100%'}}
+            source={imageSource}
+            resizeMode={FastImage.resizeMode.contain}
           />
         </Animated.View>
         {emptyArray.map((_, idx) => {

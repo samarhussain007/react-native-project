@@ -26,6 +26,7 @@
     "react-native-confetti-cannon": "^1.5.2",
     "react-native-dotenv": "^3.4.9",
     "react-native-eject": "^0.2.0",
+    "react-native-fast-image": "^8.6.3",
     "react-native-freshchat-sdk": "4.4.0",
     "react-native-gesture-handler": "^2.12.0",
     "react-native-haptic-feedback": "^2.0.3",

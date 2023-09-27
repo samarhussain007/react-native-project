@@ -11,6 +11,7 @@
 		011829C6A1F142EB80619879 /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12CCF02D0CA34942BBDDC33E /* Poppins-Italic.ttf */; };
 		085FD52A5114493792C531FA /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBB6DD0158654705800CCB4D /* Poppins-Regular.ttf */; };
 		0EE7BFE626FF425484181EB8 /* Poppins-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3393937C986244069F5AD8EE /* Poppins-LightItalic.ttf */; };
+		12C2C62CA3AA4C2AA83DD68E /* Humane-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0FE565F08FB42B684C2CCC2 /* Humane-Bold.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -35,7 +36,6 @@
 		E3C283CC67054A8BBF2C7876 /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 08657B6396C94AE785EDAA92 /* Poppins-ExtraLightItalic.ttf */; };
 		F461EC5E2CAB4CF687F82DA1 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9048BB806DDC41F7A870AA47 /* Poppins-Light.ttf */; };
 		F90C6FE2D3D040D0BD4C0E3D /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A74888AAD6D648A4A05104BB /* Poppins-ThinItalic.ttf */; };
-		12C2C62CA3AA4C2AA83DD68E /* Humane-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0FE565F08FB42B684C2CCC2 /* Humane-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,11 +85,11 @@
 		BB2EE2E342F3A617CFCFA3CD /* libPods-MyMacProject-MyMacProjectTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyMacProject-MyMacProjectTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB81BE22A645456191AF1D94 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBold.ttf"; path = "../assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		BBB6DD0158654705800CCB4D /* Poppins-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Regular.ttf"; path = "../assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		D0FE565F08FB42B684C2CCC2 /* Humane-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Humane-Bold.ttf"; path = "../assets/fonts/Humane-Bold.ttf"; sourceTree = "<group>"; };
 		D85578E442D34E188C07CF9D /* Poppins-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Medium.ttf"; path = "../assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F89D1D59C0074A79B3B1B56D /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBoldItalic.ttf"; path = "../assets/fonts/Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		FA4D90DF5E374EFBB748F667 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Bold.ttf"; path = "../assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
-		D0FE565F08FB42B684C2CCC2 /* Humane-Bold.ttf */ = {isa = PBXFileReference; name = "Humane-Bold.ttf"; path = "../assets/fonts/Humane-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
