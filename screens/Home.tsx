@@ -70,11 +70,11 @@ const Home = ({navigation}: any) => {
       <Button
         title="inputScreen"
         onPress={() => navigation.navigate('InputScreen')}
-      />
+      />*/}
       <Button
         title="HomeScreen"
         onPress={() => navigation.navigate('HomeScreen')}
-      /> */}
+      />
       {/* <Button
         title="SkeletonLoader"
         onPress={() => navigation.navigate('SkeletonLoader')}

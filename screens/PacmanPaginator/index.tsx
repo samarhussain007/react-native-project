@@ -32,10 +32,10 @@ const Pacman = ({
     // Change the image source to the replacement image
     setImageSource(require('../../assets/pacOpen.png'));
 
-    // Set a timer to change it back to the original image after a delay
     setTimeout(() => {
       setImageSource(require('../../assets/pacClose.png'));
     }, 100); // Adjust the delay (in milliseconds) as needed
+    // Set a timer to change it back to the original image after a delay
     setTimeout(() => {
       setImageSource(require('../../assets/pacOpen.png'));
     }, 250); // Adjust the delay (in milliseconds) as needed
@@ -99,16 +99,6 @@ const Pacman = ({
             animatedLeft,
             rotateStyles,
           ]}>
-          {/* <FastImage
-            source={imageSource}
-            style={[
-              {
-                width: '100%',
-                height: '100%',
-              },
-            ]}
-            resizeMode="contain"
-          /> */}
           <FastImage
             style={{width: '100%', height: '100%'}}
             source={imageSource}
