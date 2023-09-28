@@ -2,6 +2,10 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "assets/fonts/Gilroy-ExtraBold.ttf",
+      "sha1": "a84043c73bbb0bc83dbfc74d7bed59bf51e48a33"
+    },
+    {
       "path": "assets/fonts/Humane-Bold.ttf",
       "sha1": "78c53cbcd2d9f412b4de1fe5bbcb71795f488ab4"
     },

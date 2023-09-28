@@ -23,6 +23,7 @@ import Pacman from './PacmanPaginator';
 import React, {useState, useRef, useCallback, useMemo} from 'react';
 import {LogBox} from 'react-native';
 import Animated, {useSharedValue} from 'react-native-reanimated';
+import IndiaMapBanner from './IndiaMapBanner';
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
@@ -722,12 +723,13 @@ const GameStack = props => {
             {items.map(el => {
               return (
                 <Pressable
-                  onPress={() =>
-                    navigation.navigate('How to screen', {
-                      id: el.name,
-                      htScreen: el.htData,
-                    })
-                  }
+                  // onPress={() =>
+                  //   navigation.navigate('How to screen', {
+                  //     id: el.name,
+                  //     htScreen: el.htData,
+                  //   })
+                  // }
+                  onPress={() => navigation.navigate('ScreenVideo')}
                   style={{
                     height: childHeight,
                     width: childWidth,
@@ -853,6 +855,7 @@ const GameStack = props => {
             <TournamentCard />
             <TournamentCard />
           </View>
+          <IndiaMapBanner />
           <View
             style={{
               width: '70%',

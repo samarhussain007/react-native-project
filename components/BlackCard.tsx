@@ -52,6 +52,9 @@ const styles = StyleSheet.create({
 });
 
 const BlackCard = () => {
+  useEffect(() => {
+    infiniteRainbow();
+  }, []);
   const START_DEFAULT = {x: 1, y: 1};
   const END_DEFAULT = {x: 0, y: 0};
   const START_HORIZONTAL = {x: 0, y: 0.5};
@@ -130,9 +133,7 @@ const BlackCard = () => {
         <Text style={styles.text}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
         </Text>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => infiniteRainbow()}>
+        <TouchableOpacity style={styles.button}>
           <Text>PLAY NOW</Text>
         </TouchableOpacity>
       </View>
