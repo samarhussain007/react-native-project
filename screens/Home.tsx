@@ -74,7 +74,7 @@ const Home = ({navigation}: any) => {
       <Button
         title="HomeScreen"
         onPress={() => navigation.navigate('HomeScreen')}
-      /> */}
+      />
       {/* <Button
         title="SkeletonLoader"
         onPress={() => navigation.navigate('SkeletonLoader')}
