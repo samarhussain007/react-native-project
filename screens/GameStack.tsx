@@ -909,24 +909,6 @@ const GameStack = props => {
               </GradientText>
             </View>
           </View>
-          {/* <ConfettiCannon
-            count={200}
-            origin={{x: 0, y: 0}}
-            colors={[
-              '#ff8100',
-              '#ff8100',
-              '#ff8100',
-              '#ff8100',
-              '#ff8100',
-              '#ff8100',
-              '#ff8100',
-              '#ff8100',
-              '#ff8100',
-              '#ff8100',
-              '#ff8100',
-            ]}
-            autoStart={true}
-          /> */}
         </View>
       </ScrollView>
     </View>
