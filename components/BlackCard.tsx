@@ -8,8 +8,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+
 import {useEffect, useRef} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
+import {useFocusEffect} from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   container: {
@@ -52,9 +54,6 @@ const styles = StyleSheet.create({
 });
 
 const BlackCard = () => {
-  useEffect(() => {
-    infiniteRainbow();
-  }, []);
   const START_DEFAULT = {x: 1, y: 1};
   const END_DEFAULT = {x: 0, y: 0};
   const START_HORIZONTAL = {x: 0, y: 0.5};
@@ -72,7 +71,7 @@ const BlackCard = () => {
   const MOVEMENT = GRADIENT_LOCATIONS[1] / 20;
   const INTERVAL = 30;
 
-  let timeout = undefined;
+  // let timeout = undefined;
 
   let [gradientOptions, setGradientOptions] = React.useState({
     colors: GRADIENT_COLORS,
@@ -82,6 +81,18 @@ const BlackCard = () => {
   });
   const gradientOptionsRef = React.useRef(gradientOptions);
   gradientOptionsRef.current = gradientOptions;
+  const timeoutRef = useRef(null);
+  useFocusEffect(
+    React.useCallback(() => {
+      // Function to run when the screen is focused
+      infiniteRainbow();
+
+      return () => {
+        // Function to run when the screen is unfocused
+        clearTimeout(timeoutRef.current);
+      };
+    }, []),
+  );
 
   let infiniteRainbow = () => {
     if (gradientOptionsRef.current.locations[1] - MOVEMENT <= 0) {

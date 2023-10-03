@@ -2,6 +2,10 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "assets/fonts/Boska-BoldItalic.otf",
+      "sha1": "feec388fd413445c64d386189270eac9a28572ed"
+    },
+    {
       "path": "assets/fonts/Gilroy-ExtraBold.ttf",
       "sha1": "a84043c73bbb0bc83dbfc74d7bed59bf51e48a33"
     },

@@ -29,6 +29,7 @@ LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 const {width} = Dimensions.get('window');
+
 const gapRow = 38;
 const gapColumn = 17;
 const padding = 17;
@@ -729,7 +730,7 @@ const GameStack = props => {
                   //     htScreen: el.htData,
                   //   })
                   // }
-                  onPress={() => navigation.navigate('ScreenVideo')}
+                  onPress={() => navigation.navigate('Loop')}
                   style={{
                     height: childHeight,
                     width: childWidth,

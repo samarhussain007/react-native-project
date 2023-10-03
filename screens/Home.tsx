@@ -75,10 +75,10 @@ const Home = ({navigation}: any) => {
         title="HomeScreen"
         onPress={() => navigation.navigate('HomeScreen')}
       /> */}
-      {/* <Button
+      <Button
         title="SkeletonLoader"
         onPress={() => navigation.navigate('SkeletonLoader')}
-      /> */}
+      />
       {/* <Button title="FCM" onPress={() => navigation.navigate('FCM')} /> */}
       {/* <Button title="pacman" onPress={() => navigation.navigate('Pacman')} /> */}
     </View>

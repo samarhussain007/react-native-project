@@ -37,6 +37,7 @@
 		F461EC5E2CAB4CF687F82DA1 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9048BB806DDC41F7A870AA47 /* Poppins-Light.ttf */; };
 		F90C6FE2D3D040D0BD4C0E3D /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A74888AAD6D648A4A05104BB /* Poppins-ThinItalic.ttf */; };
 		6BAD026AA1394E709A6AB968 /* Gilroy-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFD08210D34B969F593710 /* Gilroy-ExtraBold.ttf */; };
+		7560A2190FBE48B29067D2D3 /* Boska-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = E59DB6F37438452B9ECF3D30 /* Boska-BoldItalic.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		F89D1D59C0074A79B3B1B56D /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBoldItalic.ttf"; path = "../assets/fonts/Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		FA4D90DF5E374EFBB748F667 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Bold.ttf"; path = "../assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		9FAFD08210D34B969F593710 /* Gilroy-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Gilroy-ExtraBold.ttf"; path = "../assets/fonts/Gilroy-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E59DB6F37438452B9ECF3D30 /* Boska-BoldItalic.otf */ = {isa = PBXFileReference; name = "Boska-BoldItalic.otf"; path = "../assets/fonts/Boska-BoldItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 				6B7DE093A67949879E651BA6 /* MaterialIcons.ttf */,
 				D0FE565F08FB42B684C2CCC2 /* Humane-Bold.ttf */,
 				9FAFD08210D34B969F593710 /* Gilroy-ExtraBold.ttf */,
+				E59DB6F37438452B9ECF3D30 /* Boska-BoldItalic.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				2C91E10F617443ABBDC6A950 /* MaterialIcons.ttf in Resources */,
 				12C2C62CA3AA4C2AA83DD68E /* Humane-Bold.ttf in Resources */,
 				6BAD026AA1394E709A6AB968 /* Gilroy-ExtraBold.ttf in Resources */,
+				7560A2190FBE48B29067D2D3 /* Boska-BoldItalic.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

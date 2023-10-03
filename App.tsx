@@ -28,6 +28,7 @@ import SliderScreen from './screens/SliderScreen';
 // import InputScreen from './screens/InputScreen';
 import InputScreen from './screens/InputScreen';
 import SplashScreenNew from './screens/SplashScreenNew';
+import LoopAnimation from './screens/Loop';
 
 function App(): JSX.Element {
   const Stack = createNativeStackNavigator();
