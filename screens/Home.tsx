@@ -74,13 +74,13 @@ const Home = ({navigation}: any) => {
       <Button
         title="HomeScreen"
         onPress={() => navigation.navigate('HomeScreen')}
-      />
+      /> */}
       {/* <Button
         title="SkeletonLoader"
         onPress={() => navigation.navigate('SkeletonLoader')}
-      /> */}
+      />
       {/* <Button title="FCM" onPress={() => navigation.navigate('FCM')} /> */}
-      <Button title="pacman" onPress={() => navigation.navigate('Pacman')} />
+      {/* <Button title="pacman" onPress={() => navigation.navigate('Pacman')} /> */}
     </View>
   );
 };

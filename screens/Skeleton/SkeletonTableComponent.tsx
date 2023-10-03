@@ -34,7 +34,6 @@ export const TournamentComponent = () => (
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
-          height: 190,
         }}>
         <View
           style={{

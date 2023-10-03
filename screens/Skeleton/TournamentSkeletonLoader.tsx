@@ -1,10 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {ScrollView, View} from 'react-native';
-import HomeScreenSk from './HomeScreenSk';
 import LinearGradient from 'react-native-linear-gradient';
 import {TournamentComponent} from './SkeletonTableComponent';
-import TournamentCardSkComponent from './TournamentCardSkComponent';
+import {Skeleton} from '@rneui/base';
 
 export const SKLinearGradient = () => (
   <LinearGradient
@@ -18,6 +17,7 @@ export const SKLinearGradient = () => (
 );
 
 const SkeletonLoader = () => {
+  const emptyArray = new Array(5).fill(0);
   return (
     <ScrollView
       style={{
@@ -28,9 +28,39 @@ const SkeletonLoader = () => {
         style={{
           alignItems: 'center',
         }}>
+        <Skeleton
+          style={{
+            width: '90%',
+            height: 200,
+            backgroundColor: '#171717',
+            borderRadius: 16,
+            marginBottom: 16,
+          }}
+          animation="wave"
+          LinearGradientComponent={SKLinearGradient}
+        />
+
+        <View
+          style={{
+            flexDirection: 'row',
+            marginBottom: 20,
+            width: '90%',
+            justifyContent: 'space-between',
+          }}>
+          {emptyArray.map(() => (
+            <Skeleton
+              animation="wave"
+              LinearGradientComponent={SKLinearGradient}
+              style={{
+                width: 60,
+                height: 60,
+                borderRadius: 50,
+                backgroundColor: '#171717',
+              }}
+            />
+          ))}
+        </View>
         <TournamentComponent />
-        <TournamentCardSkComponent />
-        <HomeScreenSk />
       </View>
     </ScrollView>
   );
